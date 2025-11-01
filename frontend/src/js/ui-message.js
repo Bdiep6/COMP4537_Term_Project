@@ -128,8 +128,7 @@ class UIMessage {
         this.login_email_label.textContent     = LOGIN_LANG.LOGIN_EMAIL_LABEL;
         this.login_password_label.textContent  = LOGIN_LANG.LOGIN_PASSWORD_LABEL;
         this.login_submit_button.textContent   = LOGIN_LANG.LOGIN_SUBMIT_BUTTON;
-        this.login_register_prompt.textContent = LOGIN_LANG.LOGIN_REGISTER_PROMPT;
-        this.login_register_link.textContent   = LOGIN_LANG.LOGIN_REGISTER_LINK;
+        this.login_register_prompt.innerHTML   = LOGIN_LANG.LOGIN_REGISTER_PROMPT + ' <a href="registration.html" id="login_register_link">' + LOGIN_LANG.LOGIN_REGISTER_LINK + '</a>';
     }
 
     // Registration page
@@ -142,8 +141,8 @@ class UIMessage {
         this.register_password_label.textContent         = REGISTER_LANG.REGISTER_PASSWORD_LABEL;
         this.register_confirm_password_label.textContent = REGISTER_LANG.REGISTER_CONFIRM_PASSWORD_LABEL;
         this.register_submit_button.textContent          = REGISTER_LANG.REGISTER_SUBMIT_BUTTON;
-        this.register_login_prompt.textContent           = REGISTER_LANG.REGISTER_LOGIN_PROMPT;
-        this.register_login_link.textContent             = REGISTER_LANG.REGISTER_LOGIN_LINK;
+        this.register_login_prompt.innerHTML             = REGISTER_LANG.REGISTER_LOGIN_PROMPT + ' <a href="login.html" id="register_login_link">' + REGISTER_LANG.REGISTER_LOGIN_LINK + '</a>';
+        
     }
 
     // User page
