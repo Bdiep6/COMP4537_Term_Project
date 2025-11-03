@@ -5,6 +5,9 @@
  * @description In this file, we define the LoginPage class that manages user login functionality.
  */
 
+import { BACKEND_URL } from "../../lang/en/constants.js";
+
+
 class LoginPage 
 {
     constructor() 
@@ -41,7 +44,7 @@ class LoginPage
 
         try 
         {
-            const response = await fetch('/api/auth/signin', 
+            const response = await fetch(`${BACKEND_URL}/api/auth/login`, 
                 {
                     method:     'POST',
                     headers:    { 'Content-Type': 'application/json' },
@@ -52,7 +55,7 @@ class LoginPage
 
             if (response.ok) {
                 alert('Login successful!');
-                window.location.href = 'dashboard.html';
+                window.location.href = 'user.html';
             } else {
                 alert('Login failed: ' + (data.message || 'Unknown error'));
             }

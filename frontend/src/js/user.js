@@ -66,7 +66,7 @@ class UserDashboardPage
         } 
         else {
             console.warn('Failed to load user data:', data?.message || response.statusText);
-            alert('Error loading user data: ' + (data?.message || 'Unknown error'));
+            alert('No user data available: ' + (data?.message || 'Unknown error'));
             window.location.href = 'login.html';
         }
     }

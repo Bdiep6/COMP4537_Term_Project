@@ -5,6 +5,8 @@
  * @description In this file, we define the RegisterPage class that manages user registration functionality.
  */
 
+import { BACKEND_URL } from "../../lang/en/constants.js";
+
 class RegisterPage 
 {
     constructor() 
@@ -50,7 +52,7 @@ class RegisterPage
 
         try 
         {
-            const response = await fetch('/api/auth/signup', 
+            const response = await fetch(`${BACKEND_URL}/api/auth/signup`, 
                 {
                     method:     'POST',
                     headers:    { 'Content-Type': 'application/json' },
