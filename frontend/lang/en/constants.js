@@ -5,4 +5,4 @@
  * @description Language strings for the admin panel.
  */
 
-export const BACKEND_URL = "http://127.0.0.1:8080/"; // Change to your backend URL
+export const BACKEND_URL = "https://termproject.yujinjeong-comp4537-labs-0.com"; // Change to your backend URL
