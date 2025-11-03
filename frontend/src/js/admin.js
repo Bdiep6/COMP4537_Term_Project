@@ -18,22 +18,6 @@ class Admin {
 
     async init() {
         try {
-            // Require authentication for admin dashboard
-            const token = localStorage.getItem('token');
-            const storedUser = localStorage.getItem('user');
-            let user = null;
-            if (storedUser) {
-                try { user = JSON.parse(storedUser); } catch(e) { user = null; }
-            }
-
-            // Basic client-side guard: redirect to login if no token or user role is not admin
-            if (!token || !user || !user.role || user.role.toString().toLowerCase() !== 'admin') {
-                // Optionally: show a message before redirecting
-                console.warn('Admin access required. Redirecting to login.');
-                window.location.href = 'login.html';
-                return;
-            }
-
             await this.loadAdminData();
         } catch (error) {
             console.error('Error initializing admin dashboard:', error);
@@ -101,20 +85,11 @@ class Admin {
      * Logout and redirect to login page
      */
     logout() {
-        // Clear stored auth and navigate to login
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        sessionStorage.clear();
+        // Example cleanup logic
+        // localStorage.removeItem('token');
+        // sessionStorage.clear();
 
-        // Optional: inform server about logout if endpoint exists
-        try {
-            // fire-and-forget; don't wait
-            fetch('/api/auth/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('token') || '') } }).catch(() => {});
-        } catch (e) {
-            // ignore
-        }
-
-        alert('You have been logged out.');
+        alert('Logging out...');
         window.location.href = 'login.html';
     }
 }
