@@ -33,7 +33,7 @@ class UserDashboardPage
             const aiBtn = document.getElementById('goToAIServiceBtn');
             if (aiBtn) aiBtn.addEventListener('click', this.goToAIService);
 
-            const logoutBtn = document.getElementById('logoutBtn');
+            const logoutBtn = document.getElementById('user_logout');
             if (logoutBtn) logoutBtn.addEventListener('click', this.logout);
 
         } catch (err) {
@@ -79,8 +79,9 @@ class UserDashboardPage
 
     logout() 
     {
-        // TODO: Clear tokens/session as needed
+        // Clear stored auth
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         sessionStorage.clear();
 
         alert('Logging out...');
@@ -89,7 +90,7 @@ class UserDashboardPage
 }
 
 // Instantiate
-const userDashboardPage = new UserDashboardPage();
+window.UserDashboardPage = new UserDashboardPage();
 
 // Example HTML hooks (optional):
 // <button id="goToAIServiceBtn">Use AI Service</button>
