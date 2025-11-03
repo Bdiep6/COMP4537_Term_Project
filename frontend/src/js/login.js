@@ -35,16 +35,52 @@ class LoginPage {
         }
 
         try {
-            // TODO: Replace with actual API call
-            console.log('Login data:', { email, password });
+            // Call backend login API
+            const response = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-            // Simulate async login delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const data = await response.json().catch(() => ({}));
 
-            alert('Login functionality - Connect to your API');
+            if (!response.ok) {
+                const message = data && data.message ? data.message : 'Invalid credentials';
+                alert('Login failed: ' + message);
+                return;
+            }
 
-            // Example redirect logic (demo only)
-            if (email.includes('admin')) {
+            // Accept multiple common token property names
+            const token = data.token || data.accessToken || data.access_token || data.jwt;
+            let user = data.user || data.payload || data.userInfo || null;
+
+            // If server only returned a token, try to decode user info from JWT
+            if (!user && token) {
+                try {
+                    const base64Url = token.split('.')[1];
+                    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                    }).join(''));
+                    user = JSON.parse(jsonPayload);
+                } catch (e) {
+                    // ignore decode errors
+                    console.warn('Unable to decode JWT payload for user info', e);
+                }
+            }
+
+            // Persist token and user
+            if (token) {
+                localStorage.setItem('token', token);
+            }
+
+            if (user) {
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+
+            // Redirect based on role if available, otherwise fallback to user page
+            const role = user && user.role ? user.role.toString().toLowerCase() : null;
+            if (role === 'admin') {
                 window.location.href = 'admin.html';
             } else {
                 window.location.href = 'user.html';
