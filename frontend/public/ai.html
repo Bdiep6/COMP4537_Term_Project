@@ -11,7 +11,7 @@
 <body>
   <nav class="navbar">
     <h2 id="ai_logo"></h2>
-    <button class="back-btn" onclick="goBack()" id="ai_back_button"></button>
+    <button class="back-btn" onclick="aiPage.goBack()" id="ai_back_button"></button>
   </nav>
 
   <div class="container">
@@ -21,12 +21,15 @@
 
       <div class="input-section">
         <label for="userInput" id="ai_input_label"></label>
-        <textarea id="userInput" placeholder="Type your message here"></textarea>
+        <!-- <textarea id="userInput" placeholder="Type your message here"></textarea> -->
+        <input type="file" id="imageFile" accept="image/*">
+        <!-- Preview -->
+        <img id="preview" alt="Preview">
       </div>
 
       <div class="button-group">
-        <button class="submit-btn" id="ai_send_button" onclick="submitRequest()"></button>
-        <button class="clear-btn" id="ai_clear_button" onclick="clearAll()"></button>
+        <button class="submit-btn" id="ai_send_button" onclick="aiPage.submitRequest()"></button>
+        <button class="clear-btn" id="ai_clear_button" onclick="aiPage.clearAll()"></button>
       </div>
 
       <div class="output-section">

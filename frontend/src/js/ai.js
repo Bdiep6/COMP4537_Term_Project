@@ -8,7 +8,7 @@
 class AIPage {
     constructor() {
         // Cache DOM elements
-        this.inputEl = document.getElementById('userInput');
+        // this.inputEl = document.getElementById('userInput'); // Commented out: no longer using textarea
         this.outputEl = document.getElementById('ai_response_placeholder');
         this.submitBtn = document.getElementById('ai_send_button');
 
@@ -16,7 +16,7 @@ class AIPage {
         this.submitRequest = this.submitRequest.bind(this);
         this.clearAll = this.clearAll.bind(this);
         this.goBack = this.goBack.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
+        // this.handleKeyPress = this.handleKeyPress.bind(this); // Commented out: no longer using textarea
 
         // Initialize listeners when DOM is ready
         window.addEventListener('DOMContentLoaded', () => this.init());
@@ -24,15 +24,32 @@ class AIPage {
 
     init() {
         // Setup Enter key submission
-        this.inputEl.addEventListener('keydown', this.handleKeyPress);
+        // this.inputEl.addEventListener('keydown', this.handleKeyPress); // Commented out: no textarea to listen to
     }
 
     async submitRequest() {
-        const input = this.inputEl.value.trim();
-        if (!input) {
-            alert('Please enter some text');
+        const formData = new FormData();
+        const fileInput = document.getElementById('imageFile');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert('Please select an image file.');
             return;
         }
+
+            // Show preview
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = 'block';
+    
+
+        formData.append('file', file);
+
+        // const input = this.inputEl.value.trim();
+        // if (!input) {
+        //     alert('Please enter some text');
+        //     return;
+        // }
 
         // Show loading state
         this.submitBtn.disabled = true;
@@ -53,13 +70,21 @@ class AIPage {
             // });
             // const data = await response.json();
 
+            const response = await fetch('https://blip-backend-5svjo.ondigitalocean.app/describe', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
             // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // await new Promise(resolve => setTimeout(resolve, 2000));
 
             // Placeholder response
             this.outputEl.textContent =
-                `AI Response: This is a placeholder response to "${input}". Connect your actual AI service API here.`;
+                ` ${data.description}`;
 
+                
         } catch (error) {
             this.outputEl.className = 'output-box';
             this.outputEl.textContent = 'Error: ' + error.message;
@@ -71,7 +96,9 @@ class AIPage {
     }
 
     clearAll() {
-        this.inputEl.value = '';
+        // this.inputEl.value = ''; // Commented out: no textarea to clear
+        const fileInput = document.getElementById('imageFile');
+        fileInput.value = '';
         this.outputEl.className = 'output-box empty';
         this.outputEl.textContent = 'Response will appear here...';
     }
@@ -80,12 +107,12 @@ class AIPage {
         window.location.href = 'user.html';
     }
 
-    handleKeyPress(event) {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            event.preventDefault();
-            this.submitRequest();
-        }
-    }
+    // handleKeyPress(event) { // Commented out: no longer using textarea
+    //     if (event.key === 'Enter' && !event.shiftKey) {
+    //         event.preventDefault();
+    //         this.submitRequest();
+    //     }
+    // }
 }
 
 // Instantiate the class
