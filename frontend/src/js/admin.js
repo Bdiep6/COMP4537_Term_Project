@@ -17,6 +17,14 @@ class Admin {
     }
 
     async init() {
+
+        try{
+            const logoutBtn = document.getElementById('admin-logout');
+            if (logoutBtn) logoutBtn.addEventListener('click', this.logout);
+        } catch (error) {
+            console.error('Error initializing admin logout:', error);
+        }
+
         try {
             await this.loadAdminData();
         } catch (error) {
@@ -86,9 +94,10 @@ class Admin {
      * Logout and redirect to login page
      */
     logout() {
-        // Example cleanup logic
-        // localStorage.removeItem('token');
-        // sessionStorage.clear();
+        // Clear stored auth
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        sessionStorage.clear();
 
         alert('Logging out...');
         window.location.href = 'login.html';
