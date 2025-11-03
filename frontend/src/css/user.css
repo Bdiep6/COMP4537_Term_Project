@@ -126,3 +126,20 @@ body {
 .user-collection {
     margin-top: 20px;
 }
+
+
+#nav-link{
+    display: flex;
+    gap: 25px;
+}
+
+#nav-link a{
+    color: #ff9a8b;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+#nav-link a:hover {
+    text-decoration: underline;
+}
