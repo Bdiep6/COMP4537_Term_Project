@@ -5,6 +5,9 @@
  * @description In this file, we define the Admin class that manages the admin dashboard functionality, including loading user statistics and handling admin actions.
  */
 
+import { BACKEND_URL } from "../../lang/en/constants.js";
+
+
 class Admin {
     constructor() {
         this.userTableBody = document.getElementById('usersTableBody');
@@ -62,7 +65,7 @@ class Admin {
 
         const token = localStorage.getItem('token');
 
-        const response = await fetch('/api/auth/users', {
+        const response = await fetch(`${BACKEND_URL}/api/auth/users`, {
             headers: { 'Authorization': 'Bearer ' + token }
         });
 
