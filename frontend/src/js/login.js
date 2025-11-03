@@ -5,8 +5,10 @@
  * @description In this file, we define the LoginPage class that manages user login functionality.
  */
 
-class LoginPage {
-    constructor() {
+class LoginPage 
+{
+    constructor() 
+    {
         // Bind methods to preserve context
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -14,7 +16,8 @@ class LoginPage {
         window.addEventListener('DOMContentLoaded', () => this.init());
     }
 
-    init() {
+    init() 
+    {
         const form = document.getElementById('loginForm');
         if (form) {
             form.addEventListener('submit', this.handleSubmit);
@@ -23,23 +26,27 @@ class LoginPage {
         }
     }
 
-    async handleSubmit(event) {
+    async handleSubmit(event) 
+    {
         event.preventDefault();
 
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
+        const email     = document.getElementById('email').value.trim();
+        const password  = document.getElementById('password').value.trim();
 
-        if (!email || !password) {
-            alert('Please enter both email and password.');
-            return;
-        }
+        if (!email || !password) 
+            {
+                alert('Please enter both email and password.');
+                return;
+            }
 
-        try {
-            const response = await fetch('/api/auth/signin', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
+        try 
+        {
+            const response = await fetch('/api/auth/signin', 
+                {
+                    method:     'POST',
+                    headers:    { 'Content-Type': 'application/json' },
+                    body:       JSON.stringify({ email, password })
+                });
 
             const data = await response.json();
 
@@ -50,11 +57,11 @@ class LoginPage {
                 alert('Login failed: ' + (data.message || 'Unknown error'));
             }
 
-        } catch (error) {
+        } catch (error) 
+        {
             console.error("Login error:", error);
             alert(`Network or fetch error: ${error.message}`);
         }       
-
     }
 }
 

@@ -5,8 +5,10 @@
  * @description In this file, we define the RegisterPage class that manages user registration functionality.
  */
 
-class RegisterPage {
-    constructor() {
+class RegisterPage 
+{
+    constructor() 
+    {
         // Bind context
         this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -14,8 +16,10 @@ class RegisterPage {
         window.addEventListener('DOMContentLoaded', () => this.init());
     }
 
-    init() {
+    init() 
+    {
         const form = document.getElementById('registerForm');
+
         if (form) {
             form.addEventListener('submit', this.handleSubmit);
         } else {
@@ -23,7 +27,8 @@ class RegisterPage {
         }
     }
 
-    async handleSubmit(event) {
+    async handleSubmit(event) 
+    {
         event.preventDefault();
 
         const username          = document.getElementById('username').value.trim();
@@ -31,22 +36,26 @@ class RegisterPage {
         const password          = document.getElementById('password').value.trim();
         const confirmPassword   = document.getElementById('confirmPassword').value.trim();
 
-        if (!username || !email || !password || !confirmPassword) {
-            alert('Please fill out all fields.');
-            return;
-        }
+        if (!username || !email || !password || !confirmPassword) 
+            {
+                alert('Please fill out all fields.');
+                return;
+            }
 
-        if (password !== confirmPassword) {
-            alert('Passwords do not match!');
-            return;
-        }
+        if (password !== confirmPassword) 
+            {
+                alert('Passwords do not match!');
+                return;
+            }
 
-        try {
-            const response = await fetch('/api/auth/signup', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, password })
-            });
+        try 
+        {
+            const response = await fetch('/api/auth/signup', 
+                {
+                    method:     'POST',
+                    headers:    { 'Content-Type': 'application/json' },
+                    body:       JSON.stringify({ username, email, password })
+                });
 
             const data = await response.json();
 
@@ -57,9 +66,10 @@ class RegisterPage {
                 alert('Registration failed: ' + (data.message || 'Unknown error'));
             }
 
-        } catch (error) {
-  console.error("Registration error:", error);
-  alert(`Network or fetch error: ${error.message}`);
+        } catch (error) 
+        {
+            console.error("Registration error:", error);
+            alert(`Network or fetch error: ${error.message}`);
         }
     }
 }
