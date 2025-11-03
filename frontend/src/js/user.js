@@ -16,7 +16,7 @@ class UserDashboardPage
 
         // Bind methods
         this.init               = this.init.bind(this);
-        this.loadUserData       = this.loadUserData.bind(this);
+        // this.loadUserData       = this.loadUserData.bind(this); // commented out
         this.goToAIService      = this.goToAIService.bind(this);
         this.logout             = this.logout.bind(this);
 
@@ -27,7 +27,7 @@ class UserDashboardPage
     async init() 
     {
         try {
-            await this.loadUserData();
+            // await this.loadUserData(); // commented out
 
             // Optional: wire buttons if present
             const aiBtn = document.getElementById('goToAIServiceBtn');
@@ -90,7 +90,7 @@ class UserDashboardPage
 }
 
 // Instantiate
-const userDashboardPage = new UserDashboardPage();
+window.UserDashboardPage = new UserDashboardPage();
 
 // Example HTML hooks (optional):
 // <button id="goToAIServiceBtn">Use AI Service</button>
