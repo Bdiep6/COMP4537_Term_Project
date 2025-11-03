@@ -41,35 +41,35 @@ class UserDashboardPage
         }
     }
 
-    async loadUserData() 
-    {
-        const token     = localStorage.getItem('token');
-        const response  = await fetch('/api/auth/current-user', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
+    // async loadUserData() 
+    // {
+    //     const token     = localStorage.getItem('token');
+    //     const response  = await fetch('/api/auth/current-user', {
+    //         method: 'GET',
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //     });
 
-        let data = null;
-        try {
-            data = await response.json();
-        } catch (err) {
-            console.warn('Response not JSON or empty:', err);
-        }
+    //     let data = null;
+    //     try {
+    //         data = await response.json();
+    //     } catch (err) {
+    //         console.warn('Response not JSON or empty:', err);
+    //     }
 
-        if (response.ok && data) {     
-            if (this.usernameEl) this.usernameEl.textContent            = data.username;
-            if (this.apiCallsEl) this.apiCallsEl.textContent            = data.apiCalls?.toLocaleString() ?? '0';
-            if (this.totalRequestsEl) this.totalRequestsEl.textContent  = data.totalRequests?.toString() ?? '0';
-        } 
-        else {
-            console.warn('Failed to load user data:', data?.message || response.statusText);
-            alert('No user data available: ' + (data?.message || 'Unknown error'));
-            window.location.href = 'login.html';
-        }
-    }
+    //     if (response.ok && data) {     
+    //         if (this.usernameEl) this.usernameEl.textContent            = data.username;
+    //         if (this.apiCallsEl) this.apiCallsEl.textContent            = data.apiCalls?.toLocaleString() ?? '0';
+    //         if (this.totalRequestsEl) this.totalRequestsEl.textContent  = data.totalRequests?.toString() ?? '0';
+    //     } 
+    //     else {
+    //         console.warn('Failed to load user data:', data?.message || response.statusText);
+    //         alert('No user data available: ' + (data?.message || 'Unknown error'));
+    //         // window.location.href = 'login.html';
+    //     }
+    // }
 
 
     goToAIService() 
