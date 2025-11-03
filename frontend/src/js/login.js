@@ -35,25 +35,26 @@ class LoginPage {
         }
 
         try {
-            // TODO: Replace with actual API call
-            console.log('Login data:', { email, password });
+            const response = await fetch('/api/auth/signin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-            // Simulate async login delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const data = await response.json();
 
-            alert('Login functionality - Connect to your API');
-
-            // Example redirect logic (demo only)
-            if (email.includes('admin')) {
-                window.location.href = 'admin.html';
+            if (response.ok) {
+                alert('Login successful!');
+                window.location.href = 'dashboard.html';
             } else {
-                window.location.href = 'user.html';
+                alert('Login failed: ' + (data.message || 'Unknown error'));
             }
 
         } catch (error) {
-            console.error('Login error:', error);
-            alert('Error logging in. Please try again later.');
-        }
+            console.error("Login error:", error);
+            alert(`Network or fetch error: ${error.message}`);
+        }       
+
     }
 }
 
