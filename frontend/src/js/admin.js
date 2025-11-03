@@ -71,9 +71,8 @@ class Admin {
 
         const data = await response.json();
 
+        this.userTableBody.innerHTML = JSON.stringify(data, null, 2);
 
-
-        this.renderUsers(data);
     }
 
     /**
@@ -93,10 +92,9 @@ class Admin {
         // Clear existing rows
         this.userTableBody.innerHTML = '';
 
-        users.forEach(user => {
-            const row = this.userTableBody;
-            row.innerHTML = user + " ";
-        });
+        const row = this.userTableBody.insertRow();
+        row.innerHTML = users;
+
     }
 
     /**
