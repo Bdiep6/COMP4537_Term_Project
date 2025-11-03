@@ -58,8 +58,8 @@ class RegisterPage {
             }
 
         } catch (error) {
-            console.error('Registration error:', error);
-            alert('Error during registration. Please try again later.');
+  console.error("Registration error:", error);
+  alert(`Network or fetch error: ${error.message}`);
         }
     }
 }
