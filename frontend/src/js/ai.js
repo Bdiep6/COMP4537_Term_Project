@@ -24,9 +24,18 @@ class AIPage {
         window.addEventListener('DOMContentLoaded', () => this.init());
     }
 
-    init() {
-        // Setup Enter key submission
-        // this.inputEl.addEventListener('keydown', this.handleKeyPress); // Commented out: no textarea to listen to
+    async init() 
+    {
+        try
+        {
+            const ai_send_button = document.getElementById('ai_send_button');
+            if (ai_send_button) ai_send_button.addEventListener('click', this.submitRequest);
+
+        }catch(error)
+        {
+            console.error("Error initializing AIPage:", error);
+        }
+       
     }
 
     async submitRequest() {
