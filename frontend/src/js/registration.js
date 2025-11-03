@@ -26,10 +26,10 @@ class RegisterPage {
     async handleSubmit(event) {
         event.preventDefault();
 
-        const username = document.getElementById('username').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const password = document.getElementById('password').value.trim();
-        const confirmPassword = document.getElementById('confirmPassword').value.trim();
+        const username          = document.getElementById('username').value.trim();
+        const email             = document.getElementById('email').value.trim();
+        const password          = document.getElementById('password').value.trim();
+        const confirmPassword   = document.getElementById('confirmPassword').value.trim();
 
         if (!username || !email || !password || !confirmPassword) {
             alert('Please fill out all fields.');
@@ -42,16 +42,20 @@ class RegisterPage {
         }
 
         try {
-            // TODO: Replace with your actual API call
-            console.log('Registration data:', { username, email, password });
+            const response = await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, email, password })
+            });
 
-            // Simulate network delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const data = await response.json();
 
-            alert('Registration functionality - Connect to your API');
-
-            // Redirect after successful registration
-            // window.location.href = 'login.html';
+            if (response.ok) {
+                alert('Registration successful! Please log in.');
+                window.location.href = 'login.html';
+            } else {
+                alert('Registration failed: ' + (data.message || 'Unknown error'));
+            }
 
         } catch (error) {
             console.error('Registration error:', error);
