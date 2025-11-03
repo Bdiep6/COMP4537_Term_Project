@@ -26,6 +26,7 @@ class Admin {
 
     /**
      * Load admin data from API (currently placeholder)
+     * /api/auth/admin-dashboard
      */
     async loadAdminData() {
         // 🔸 Example for future: replace this with actual API call
