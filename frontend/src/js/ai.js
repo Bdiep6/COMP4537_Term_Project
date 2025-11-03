@@ -7,7 +7,6 @@
 
 import { BACKEND_URL } from "../../lang/en/constants.js";
 
-
 class AIPage {
     constructor() {
         // Cache DOM elements
