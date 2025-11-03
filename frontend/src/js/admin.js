@@ -62,7 +62,7 @@ class Admin {
 
         const token = localStorage.getItem('token');
 
-        const response = await fetch('/api/admin/users', {
+        const response = await fetch('/api/auth/users', {
             headers: { 'Authorization': 'Bearer ' + token }
         });
 
