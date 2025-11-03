@@ -90,7 +90,7 @@ class UserDashboardPage
 }
 
 // Instantiate
-const userDashboardPage = new UserDashboardPage();
+window.UserDashboardPage = new UserDashboardPage();
 
 // Example HTML hooks (optional):
 // <button id="goToAIServiceBtn">Use AI Service</button>
