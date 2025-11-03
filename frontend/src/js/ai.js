@@ -5,6 +5,9 @@
  * @description In this file, we define the AIPage class that handles interactions with the AI, including submitting user input, displaying responses, and managing UI elements.
  */
 
+import { BACKEND_URL } from "../../lang/en/constants.js";
+
+
 class AIPage {
     constructor() {
         // Cache DOM elements
@@ -37,11 +40,11 @@ class AIPage {
             return;
         }
 
-            // Show preview
+        // Show preview
         const preview = document.getElementById('preview');
         preview.src = URL.createObjectURL(file);
         preview.style.display = 'block';
-    
+
 
         formData.append('file', file);
 
@@ -77,6 +80,41 @@ class AIPage {
 
             const data = await response.json();
 
+
+            try {
+
+                const token = localStorage.getItem('token');
+
+                const res = await fetch(`${BACKEND_URL}/api/auth/add`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+                const payload = await res.json();
+
+                if (!res.ok) {
+                    if (res.status === 401) {
+                        console.warn("addApiUsage: Unauthorized", payload);
+                    } else if (res.status === 404) {
+                        console.warn("addApiUsage: User not found", payload);
+                    } else {
+                        console.warn("addApiUsage failed:", res.status, payload);
+                    }
+                } else {
+                    console.log("addApiUsage success:", payload);
+                }
+
+
+            } catch (err) {
+                // handle network or parsing errors
+                console.error("addApiUsage error:", err);
+            }
+
+
+
             // Simulate API delay
             // await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -84,7 +122,7 @@ class AIPage {
             this.outputEl.textContent =
                 ` ${data.description}`;
 
-                
+
         } catch (error) {
             this.outputEl.className = 'output-box';
             this.outputEl.textContent = 'Error: ' + error.message;
