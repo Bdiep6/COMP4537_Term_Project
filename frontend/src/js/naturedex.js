@@ -46,6 +46,17 @@ class NatureDex
 
     init() 
     {
+
+        try 
+        {
+            const naturedex_back_button = document.getElementById('naturedex_back_button');
+            if (naturedex_back_button) naturedex_back_button.addEventListener('click', this.goBack);
+
+        }catch (error)
+        {
+            console.error("Error initializing NatureDex:", error);
+        }
+
         // Set up button events
         document.querySelectorAll(".collect-btn").forEach(btn => {
             btn.addEventListener("click", () => {
@@ -156,6 +167,11 @@ class NatureDex
             );
 
         }
+    }
+
+    goBack() 
+    {
+        window.location.href = 'user.html';
     }
 }
 
