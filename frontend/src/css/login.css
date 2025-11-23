@@ -111,7 +111,7 @@ nav {
     background: rgba(255, 255, 255, 0.7);
     padding: 12px 16px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
     gap: 50px;
 }
@@ -125,4 +125,10 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+}
+
+.login_error_message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
 }

@@ -5,7 +5,7 @@
  * @description In this file, we define the Admin class that manages the admin dashboard functionality, including loading user statistics and handling admin actions.
  */
 
-import { BACKEND_URL } from "../../lang/en/constants.js";
+import { BACKEND_URL } from "./constants.js";
 
 
 class Admin {

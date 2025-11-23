@@ -5,7 +5,7 @@
  * @description In this file, we define the RegisterPage class that manages user registration functionality.
  */
 
-import { BACKEND_URL } from "../../lang/en/constants.js";
+import { BACKEND_URL } from "./constants.js";
 
 class RegisterPage 
 {

@@ -83,7 +83,6 @@ class UserDashboardPage
         localStorage.removeItem('user');
         sessionStorage.clear();
 
-        alert('Logging out...');
         window.location.href = 'login.html';
     }
 }

@@ -5,7 +5,8 @@
  * @description In this file, we define the LoginPage class that manages user login functionality.
  */
 
-import { BACKEND_URL } from "../../lang/en/constants.js";
+import { BACKEND_URL } from "./constants.js";
+import { ERROR_LANG } from "../../lang/en/errors-lang.js";
 
 
 class LoginPage 
@@ -33,17 +34,22 @@ class LoginPage
     {
         event.preventDefault();
 
-        const email     = document.getElementById('email').value.trim();
-        const password  = document.getElementById('password').value.trim();
-
-        if (!email || !password) 
-            {
-                alert('Please enter both email and password.');
-                return;
-            }
-
+        const email                 = document.getElementById('email').value.trim();
+        const password              = document.getElementById('password').value.trim();
+        const loginErrorMessage     = document.getElementById('login_error_message');
+        
+        
+        // Send login request to backend
         try 
         {
+            if(loginErrorMessage) loginErrorMessage.textContent = ERROR_LANG.LOGIN_CLEAR_ERROR;
+
+            if (!email || !password) 
+                {
+                    loginErrorMessage.textContent = ERROR_LANG.LOGIN_EMPTY_FIELDS;
+                    return;
+                }
+
             const response = await fetch(`${BACKEND_URL}/api/auth/login`, 
                 {
                     method:     'POST',
@@ -57,7 +63,7 @@ class LoginPage
                 // Assume data contains 'token'
                 const token = data.token;
                 if (!token) {
-                    alert('Login failed: No token received');
+                    loginErrorMessage.textContent = 'Login failed: No token received';
                     return;
                 }
 
@@ -72,7 +78,7 @@ class LoginPage
                     user = JSON.parse(jsonPayload);
                 } catch (e) {
                     console.error('Failed to decode JWT:', e);
-                    alert('Login failed: Invalid token');
+                    loginErrorMessage.textContent = ERROR_LANG.LOGIN_JWT_MALFORMED;
                     return;
                 }
 
@@ -87,14 +93,14 @@ class LoginPage
                     window.location.href = 'user.html';
                 }
             } else {
-                alert('Login failed: ' + (data.message || 'Unknown error'));
+                // TODO: Backend should send message on failure
+                loginErrorMessage.textContent = (data.message || ERROR_LANG.LOGIN_UKNOWN_ERROR);
             }
 
         } catch (error) 
         {
             console.error("Login error:", error);
-            alert(`Network or fetch error: ${error.message}`);
-        }       
+            loginErrorMessage.textContent = `${ERROR_LANG.LOGIN_NETWORK_FETCH} ${error.message}`;        }       
     }
 }
 

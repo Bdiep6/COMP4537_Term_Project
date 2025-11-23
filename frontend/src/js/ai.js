@@ -5,7 +5,7 @@
  * @description In this file, we define the AIPage class that handles interactions with the AI, including submitting user input, displaying responses, and managing UI elements.
  */
 
-import { BACKEND_URL } from "../../lang/en/constants.js";
+import { BACKEND_URL } from "./constants.js";
 
 class AIPage {
     constructor() {
@@ -88,7 +88,6 @@ class AIPage {
 
 
             try {
-
                 const token = localStorage.getItem('token');
 
                 const res = await fetch(`${BACKEND_URL}/api/auth/add`, {
