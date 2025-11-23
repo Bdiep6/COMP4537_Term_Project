@@ -29,8 +29,7 @@ class UserDashboardPage
         try {
             // await this.loadUserData(); // commented out
 
-            // Optional: wire buttons if present
-            const aiBtn = document.getElementById('goToAIServiceBtn');
+            const aiBtn = document.getElementById('user_ai_button');
             if (aiBtn) aiBtn.addEventListener('click', this.goToAIService);
 
             const logoutBtn = document.getElementById('user_logout');
@@ -74,7 +73,7 @@ class UserDashboardPage
 
     goToAIService() 
     {
-        window.location.href = 'ai-service.html';
+        window.location.href = 'ai.html';
     }
 
     logout() 
@@ -89,9 +88,4 @@ class UserDashboardPage
     }
 }
 
-// Instantiate
 window.UserDashboardPage = new UserDashboardPage();
-
-// Example HTML hooks (optional):
-// <button id="goToAIServiceBtn">Use AI Service</button>
-// <button id="logoutBtn">Logout</button>
