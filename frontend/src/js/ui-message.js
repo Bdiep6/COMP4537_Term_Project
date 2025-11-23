@@ -169,7 +169,7 @@ class UIMessage {
         this.user_title.textContent                     = USER_LANG.USER_TITLE;
         this.user_logo.textContent                      = USER_LANG.USER_LOGO;
         this.user_logout.textContent                    = USER_LANG.USER_LOGOUT;
-        this.user_welcome_message.textContent           = USER_LANG.USER_WELCOME_MESSAGE.replace("{username}", "User");
+        this.user_welcome_message.textContent           = USER_LANG.USER_WELCOME_MESSAGE.replace("{username}", `${this.getUsername()}`);
         this.user_welcome_subtitle.textContent          = USER_LANG.USER_WELCOME_SUBTITLE;
         this.user_remaining_api_calls_label.textContent = USER_LANG.USER_REMAINING_API_CALLS_LABEL;
         this.user_total_requests_label.textContent      = USER_LANG.USER_TOTAL_REQUESTS_LABEL;
@@ -210,6 +210,17 @@ class UIMessage {
   clearMessage() {
 
   }
+
+  /**
+   * Get username from local storage.
+   * @returns {string} Username or "User not found" if not available.
+   */
+  getUsername() 
+  {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user).username : "User not found";
+  }
+
 }
 
 // Initialize UIMessage class
