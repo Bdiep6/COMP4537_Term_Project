@@ -11,13 +11,15 @@ class AIPage {
     constructor() {
         // Cache DOM elements
         // this.inputEl = document.getElementById('userInput'); // Commented out: no longer using textarea
-        this.outputEl = document.getElementById('ai_response_placeholder');
-        this.submitBtn = document.getElementById('ai_send_button');
+        this.outputEl   = document.getElementById('ai_response_placeholder');
+        this.submitBtn  = document.getElementById('ai_send_button');
+        this.backBtn    = document.getElementById('ai_back_button');
 
         // Bind methods to maintain correct `this`
-        this.submitRequest = this.submitRequest.bind(this);
-        this.clearAll = this.clearAll.bind(this);
-        this.goBack = this.goBack.bind(this);
+        this.submitRequest  = this.submitRequest.bind(this);
+        this.clearAll       = this.clearAll.bind(this);
+        this.goBack         = this.goBack.bind(this);
+
         // this.handleKeyPress = this.handleKeyPress.bind(this); // Commented out: no longer using textarea
 
         // Initialize listeners when DOM is ready
@@ -28,6 +30,11 @@ class AIPage {
     {
         try
         {
+            // Initialize back button events
+            const ai_back_button = document.getElementById('ai_back_button');
+            if (ai_back_button) ai_back_button.addEventListener('click', this.goBack);
+            
+            // Initialize send button events
             const ai_send_button = document.getElementById('ai_send_button');
             if (ai_send_button) ai_send_button.addEventListener('click', this.submitRequest);
 
