@@ -7,7 +7,7 @@
 
 const USER_LANG = {
     USER_TITLE                     : "User Dashboard",
-    USER_LOGO                      : "AI",
+    USER_LOGO                      : "User",
     USER_LOGOUT                    : "Logout",
     USER_WELCOME_MESSAGE           : "Welcome, {username}!",
     USER_WELCOME_SUBTITLE          : "Manage your AI service usage and access our tools",
@@ -18,5 +18,9 @@ const USER_LANG = {
     USER_AI_BUTTON                 : "Access AI",
     USER_COLLECTION                : "My Collection",
     USER_COLLECTION_DESCRIPTION    : "View and manage your saved AI responses.",
-    USER_COLLECTION_BUTTON         : "Go to My Collection"
+    USER_COLLECTION_BUTTON         : "Go to My Collection",
+    USER_NATUREDEX                 : "My NatureDex",
+    USER_NATUREDEX_DESCRIPTION     : "Track your nature item collection and achievements.",
+    USER_NATUREDEX_BUTTON          : "Go to My NatureDex"
+    
 };

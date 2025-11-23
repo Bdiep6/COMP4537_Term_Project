@@ -35,6 +35,9 @@ class UserDashboardPage
             const logoutBtn = document.getElementById('user_logout');
             if (logoutBtn) logoutBtn.addEventListener('click', this.logout);
 
+            const natureDexBtn = document.getElementById('user_naturedex_button');
+            if (natureDexBtn) natureDexBtn.addEventListener('click', this.goToNatureDex);
+
         } catch (err) {
             console.error('Error initializing user dashboard:', err);
         }
@@ -74,6 +77,11 @@ class UserDashboardPage
     goToAIService() 
     {
         window.location.href = 'ai.html';
+    }
+
+    goToNatureDex() 
+    {
+        window.location.href = 'naturedex.html';
     }
 
     logout() 

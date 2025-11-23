@@ -125,15 +125,16 @@ body {
 
 .user-collection {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
-#nav-link{
+#nav-link {
     display: flex;
     gap: 25px;
 }
 
-#nav-link a{
+#nav-link a {
     color: #66bb6a;
     font-weight: 600;
     text-decoration: none;

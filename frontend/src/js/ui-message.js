@@ -80,6 +80,9 @@ class UIMessage {
     this.user_collection                = document.getElementById("user_collection");
     this.user_collection_description    = document.getElementById("user_collection_description");
     this.user_collection_button         = document.getElementById("user_collection_button");
+    this.user_naturedex                 = document.getElementById("user_naturedex");
+    this.user_naturedex_description     = document.getElementById("user_naturedex_description");
+    this.user_naturedex_button          = document.getElementById("user_naturedex_button");
 
     // Nature dex page
     this.naturedex_title               = document.getElementById("naturedex_title");
@@ -179,6 +182,9 @@ class UIMessage {
         this.user_collection.textContent                = USER_LANG.USER_COLLECTION;
         this.user_collection_description.textContent    = USER_LANG.USER_COLLECTION_DESCRIPTION;
         this.user_collection_button.textContent         = USER_LANG.USER_COLLECTION_BUTTON;
+        this.user_naturedex.textContent                 = USER_LANG.USER_NATUREDEX;
+        this.user_naturedex_description.textContent     = USER_LANG.USER_NATUREDEX_DESCRIPTION;
+        this.user_naturedex_button.textContent          = USER_LANG.USER_NATUREDEX_BUTTON;
       }
 
     if (typeof ND_LANG !== "undefined") {
