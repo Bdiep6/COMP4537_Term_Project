@@ -1,0 +1,206 @@
+/*
+  @file naturedex.css
+  @author Yujin Jeong, Evan Vink, Brian Diep
+  @version 1.0
+  @description Stylesheet for the Nature Dex page
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+    background: white;
+    padding: 20px 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h2 {
+    color: #66bb6a;
+}
+
+
+/* Back button */
+.back-btn {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #81c784 0%, #a5d6a7 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.back-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+/* Layout */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Service card */
+.service-card {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.service-card h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+
+/* ========== NATURE DEX SPECIFIC STYLES ==========*/
+
+
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.row-label {
+    width: 70px;
+    font-weight: 600;
+}
+
+.icons {
+    display: flex;
+    gap: 0.25rem;
+    min-width: 130px;
+}
+
+.icon {
+    font-size: 2rem;
+    opacity: 0.2;
+    /* default = uncollected */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.icon.collected {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.collect-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    border: none;
+    background: #4a7c59;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.collect-btn:active {
+    transform: translateY(1px);
+}
+
+/* Achievements area */
+#achievements {
+    border-top: 1px solid #d4decf;
+    padding-top: 1.5rem;
+}
+
+.badge-grid {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 120px;
+    padding: 0.7rem;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    opacity: 0.25;
+    /* locked */
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.badge.unlocked {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.badge svg {
+    width: 48px;
+    height: 48px;
+}
+
+.badge-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.badge-desc {
+    font-size: 0.75rem;
+    text-align: center;
+    color: #555;
+}
+
+/* Simple toast for achievement unlock */
+#toast {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 0.85rem;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#toast-emoji {
+    font-size: 1.5rem;
+}

@@ -80,8 +80,27 @@ class UIMessage {
     this.user_collection                = document.getElementById("user_collection");
     this.user_collection_description    = document.getElementById("user_collection_description");
     this.user_collection_button         = document.getElementById("user_collection_button");
+
+    // Nature dex page
+    this.naturedex_title               = document.getElementById("naturedex_title");
+    this.naturedex_logo                = document.getElementById("naturedex_logo");
+    this.naturedex_back_button         = document.getElementById("naturedex_back_button");
+    this.naturedex_header              = document.getElementById("naturedex_header");
+    this.naturedex_description         = document.getElementById("naturedex_description");
+    this.naturedex_achievements_title  = document.getElementById("naturedex_achievements_title"); 
     
+    // Labels for flower, tree, rock in counter rows
+    this.naturedex_flower_label        = document.getElementById("naturedex_flower_label");
+    this.naturedex_tree_label          = document.getElementById("naturedex_tree_label");
+    this.naturedex_rock_label          = document.getElementById("naturedex_rock_label");
     
+    // Badge titles
+    this.naturedex_badge_flower_title        = document.getElementById("naturedex_badge_flower_title");
+    this.naturedex_badge_tree_title          = document.getElementById("naturedex_badge_tree_title");
+    this.naturedex_badge_rock_title          = document.getElementById("naturedex_badge_rock_title");
+
+
+
     this.setTexts();
   }
 
@@ -161,6 +180,28 @@ class UIMessage {
         this.user_collection_description.textContent    = USER_LANG.USER_COLLECTION_DESCRIPTION;
         this.user_collection_button.textContent         = USER_LANG.USER_COLLECTION_BUTTON;
       }
+
+    if (typeof ND_LANG !== "undefined") {
+        // Nature dex page main texts
+        this.naturedex_title.textContent              = ND_LANG.ND_TITLE;
+        this.naturedex_logo.textContent               = ND_LANG.ND_LOGO;
+        this.naturedex_back_button.textContent        = ND_LANG.ND_BACK_BUTTON;
+        this.naturedex_header.textContent             = ND_LANG.ND_HEADER;
+        this.naturedex_description.textContent        = ND_LANG.ND_DESCRIPTION;
+        this.naturedex_achievements_title.textContent = ND_LANG.ND_ACHIEVEMENTS_TITLE; 
+
+        // Labels for flower, tree, rock counter rows
+        this.naturedex_flower_label.textContent = ND_LANG.ND_FLOWER_LABEL;
+        this.naturedex_tree_label.textContent   = ND_LANG.ND_TREE_LABEL;
+        this.naturedex_rock_label.textContent   = ND_LANG.ND_ROCK_LABEL;
+        
+        // Badge titles
+        this.naturedex_badge_flower_title.textContent = ND_LANG.ND_BADGE_FLOWER_TITLE;
+        this.naturedex_badge_tree_title.textContent   = ND_LANG.ND_BADGE_TREE_TITLE;
+        this.naturedex_badge_rock_title.textContent   = ND_LANG.ND_BADGE_ROCK_TITLE;
+
+        
+    }
   }
 
   /**

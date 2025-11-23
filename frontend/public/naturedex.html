@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="naturedex_title"></title>
+  <link rel="stylesheet" href="../src/css/naturedex.css">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2 id="naturedex_logo">NAVBAR LOGO (NOT DYNAMIC)</h2>
+    <button class="back-btn" onclick="naturedexPage.goBack()" id="naturedex_back_button"></button>
+  </nav>
+
+  <!-- Main Container Start -->
+  <div class="container">
+    <!-- Main Card -->
+    <div class="service-card">
+
+      <h1 id="naturedex_header">HEADER (NOT DYNAMIC)</h1>
+      <p id="naturedex_description">DESCRIPTION (NOT DYNAMIC)</p>
+
+      <div class="rows">
+        <div class="row">
+          <div class="row-label" id="naturedex_flower_label">FLOWER (NOT DYNAMIC)</div>
+          <div class="icons" id="flower-icons"></div>
+          <!-- Button should be removed -->
+          <button class="collect-btn" data-type="flower">FLOWER (REMOVE THIS BTN)</button>
+        </div>
+
+        <div class="row">
+          <div class="row-label" id="naturedex_tree_label">TREE (NOT DYNAMIC)</div>
+          <div class="icons" id="tree-icons"></div>
+          <!-- Button should be removed -->
+          <button class="collect-btn" data-type="tree">TREE (REMOVE THIS BTN)</button>
+        </div>
+
+        <div class="row">
+          <div class="row-label" id="naturedex_rock_label">ROCK (NOT DYNAMIC)</div>
+          <div class="icons" id="rock-icons"></div>
+          <!-- Button should be removed -->
+          <button class="collect-btn" data-type="rock">ROCK (REMOVE THIS BTN)</button>
+        </div>
+      </div>
+
+      <div id="achievements">
+        <h2 id="naturedex_achievements_title">Achievement Badges (NOT DYNAMIC)</h2>
+        <div class="badge-grid">
+          <!-- Flower badge -->
+          <div class="badge" id="badge-flower">
+            <!-- Simple SVG medal -->
+            <svg viewBox="0 0 100 100">
+              <circle cx="50" cy="38" r="20" fill="#fdd835" />
+              <path d="M40 52 L35 85 L50 75 L65 85 L60 52 Z" fill="#ffb300" />
+              <text x="50" y="43" text-anchor="middle" font-size="16" fill="#5d4037">F</text>
+            </svg>
+            <div class="badge-title" id="naturedex_badge_flower_title">Flower Master (NOT DYNAMIC)</div>
+            <!-- <div class="badge-desc">Collect 5 flowers (NOT DYNAMIC)</div> -->
+          </div>
+
+          <!-- Tree badge -->
+          <div class="badge" id="badge-tree">
+            <svg viewBox="0 0 100 100">
+              <polygon points="50,15 25,45 35,45 20,65 80,65 65,45 75,45" fill="#66bb6a" />
+              <rect x="44" y="65" width="12" height="20" fill="#8d6e63" />
+              <text x="50" y="40" text-anchor="middle" font-size="16" fill="#1b5e20">T</text>
+            </svg>
+            <div class="badge-title" id="naturedex_badge_tree_title">Tree Guardian (NOT DYNAMIC)</div>
+            <!-- <div class="badge-desc">Collect 5 trees (NOT DYNAMIC)</div> -->
+          </div>
+
+          <!-- Rock badge -->
+          <div class="badge" id="badge-rock">
+            <svg viewBox="0 0 100 100">
+              <polygon points="20,70 35,35 65,30 80,65 50,80" fill="#90a4ae" />
+              <text x="50" y="55" text-anchor="middle" font-size="16" fill="#263238">R</text>
+            </svg>
+            <div class="badge-title" id="naturedex_badge_rock_title">Rock Collector (NOT DYNAMIC)</div>
+            <!-- <div class="badge-desc">Collect 5 rocks (NOT DYNAMIC)</div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast">
+        <div id="toast-emoji">✨ (NOT DYNAMIC)</div>
+        <div id="toast-text">Achievement unlocked!(NOT DYNAMIC)</div>
+      </div>
+    </div>
+  </div>
+  <!-- Main Container End -->
+
+  <!-- JavaScript -->
+  <script src="../lang/en/naturedex-lang.js"></script>
+  <script src="../src/js/ui-message.js"></script>
+  <script type="module" src="../src/js/naturedex.js"></script>
+</body>
+
+</html>
