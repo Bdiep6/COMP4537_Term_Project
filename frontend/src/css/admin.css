@@ -13,7 +13,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
     min-height: 100vh;
 }
 
@@ -27,12 +27,12 @@ body {
 }
 
 .navbar h2 {
-    color: #ff9a8b;
+    color: #66bb6a;
 }
 
 .logout-btn {
     padding: 8px 20px;
-    background: #ff9a8b;
+    background: #81c784;
     color: white;
     border: none;
     border-radius: 6px;
@@ -109,7 +109,7 @@ table {
 th {
     text-align: left;
     padding: 12px;
-    background: #ffecd2;
+    background: #e8f5e9;
     color: #666;
     font-weight: 600;
     font-size: 14px;
@@ -117,7 +117,7 @@ th {
 
 td {
     padding: 12px;
-    border-bottom: 1px solid #ffecd2;
+    border-bottom: 1px solid #e8f5e9;
     color: #333;
 }
 
@@ -126,7 +126,7 @@ tr:last-child td {
 }
 
 tr:hover {
-    background: #fff5eb;
+    background: #f1f8f4;
 }
 
 #nav-links{
@@ -135,7 +135,7 @@ tr:hover {
 }
 
 #nav-links a{
-    color: #ff9a8b;
+    color: #66bb6a;
     font-weight: 600;
     text-decoration: none;
     font-size: 15px;
