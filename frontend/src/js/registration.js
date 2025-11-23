@@ -6,6 +6,7 @@
  */
 
 import { BACKEND_URL } from "./constants.js";
+import { ERROR_LANG } from "../../lang/en/errors-lang.js";
 
 class RegisterPage 
 {
@@ -37,21 +38,26 @@ class RegisterPage
         const email             = document.getElementById('email').value.trim();
         const password          = document.getElementById('password').value.trim();
         const confirmPassword   = document.getElementById('confirmPassword').value.trim();
+        const loginErrorMessage = document.getElementById('login_error_message');
+        
 
         if (!username || !email || !password || !confirmPassword) 
             {
-                alert('Please fill out all fields.');
+                loginErrorMessage.textContent = ERROR_LANG.LOGIN_EMPTY_FIELDS;
                 return;
             }
 
         if (password !== confirmPassword) 
             {
-                alert('Passwords do not match!');
+                loginErrorMessage.textContent = ERROR_LANG.REGISTER_PASSWORD_DONT_MATCH;
                 return;
             }
 
         try 
         {
+
+            if(loginErrorMessage) loginErrorMessage.textContent = ERROR_LANG.LOGIN_CLEAR_ERROR;
+
             const response = await fetch(`${BACKEND_URL}/api/auth/signup`, 
                 {
                     method:     'POST',
@@ -62,16 +68,15 @@ class RegisterPage
             const data = await response.json();
 
             if (response.ok) {
-                alert('Registration successful! Please log in.');
                 window.location.href = 'login.html';
             } else {
-                alert('Registration failed: ' + (data.message || 'Unknown error'));
+                loginErrorMessage.textContent = (ERROR_LANG.LOGIN_UKNOWN_ERROR);
             }
 
         } catch (error) 
         {
-            console.error("Registration error:", error);
-            alert(`Network or fetch error: ${error.message}`);
+            console.error("Login error:", error);
+            loginErrorMessage.textContent = `${ERROR_LANG.LOGIN_NETWORK_FETCH} ${error.message}`;  
         }
     }
 }

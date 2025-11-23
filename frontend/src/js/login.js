@@ -93,8 +93,8 @@ class LoginPage
                     window.location.href = 'user.html';
                 }
             } else {
-                // TODO: Backend should send message on failure
-                loginErrorMessage.textContent = (data.message || ERROR_LANG.LOGIN_UKNOWN_ERROR);
+                // TODO: Backend should send message on failure 
+                loginErrorMessage.textContent = (data.message);
             }
 
         } catch (error) 
