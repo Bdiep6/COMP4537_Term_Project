@@ -5,6 +5,7 @@
  * @description A collection logic where users can collect items (flowers, trees, rocks) and unlock achievements.
  */
 
+import { BACKEND_URL } from "./constants.js";
 
 const MAX_COUNT = 5;
 const INITIAL_COUNT = 0;
@@ -17,7 +18,7 @@ class NatureDex
         // This is the maximum number of items per type/row in the NatureDex (flower, tree, rock)
         this.MAX_PER_TYPE = MAX_COUNT;
 
-        // Initialize emoji and counter for flower, tree, and rock counts
+        // Initialize emoji and counter for flower, tree, and rock counts state keys
         this.state = {
             flower: { emoji: ND_LANG.ND_EMOJI_FLOWER, count: INITIAL_COUNT, badgeId: "badge-flower" },
             tree:   { emoji: ND_LANG.ND_EMOJI_TREE, count: INITIAL_COUNT, badgeId: "badge-tree" },
@@ -44,28 +45,45 @@ class NatureDex
         window.addEventListener('DOMContentLoaded', () => this.init());
     }
 
-    init() 
+    async init() 
     {
+        try {
+            // Initialize back button events
+            const backBtn = document.getElementById('naturedex_back_button');
+            if (backBtn) backBtn.addEventListener('click', this.goBack);
 
-        try 
-        {
-            const naturedex_back_button = document.getElementById('naturedex_back_button');
-            if (naturedex_back_button) naturedex_back_button.addEventListener('click', this.goBack);
+            // Call backend to get counts & achievements
+            const token = localStorage.getItem("token");
 
-        }catch (error)
-        {
+            if (token) {
+                
+                const res = await fetch(`${BACKEND_URL}/api/ai/naturedex`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+
+                    // data.counts: { flower, tree, rock }
+                    // Map users db counts for "flower", "tree", "rock" to state keys
+                    this.state.flower.count = data.counts.flower;
+                    this.state.tree.count   = data.counts.tree;
+                    this.state.rock.count   = data.counts.rock;
+
+                    this.unlockedAchievements.flower = data.achievements.flower;
+                    this.unlockedAchievements.tree   = data.achievements.tree;
+                    this.unlockedAchievements.rock   = data.achievements.rock;
+                }
+            }
+
+        } catch (error) {
             console.error("Error initializing NatureDex:", error);
         }
 
-        // Set up button events
-        document.querySelectorAll(".collect-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const type = btn.dataset.type;
-                this.collect(type);
-            });
-        });
-
-        // Initial render
+        // Initial render counts from DB
         this.renderAll();
     }
 

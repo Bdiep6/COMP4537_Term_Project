@@ -86,7 +86,36 @@ class AIPage {
 
             const data = await response.json();
 
+            // Save discovery to NatureDex
+            try {
+                const token = localStorage.getItem("token");
 
+                const categoryMap = {
+                    flower: "flowers",
+                    tree:   "trees",
+                    rock:   "rocks"
+                };
+
+                const mappedCategory = categoryMap[data.category];
+
+                if (token && mappedCategory) {
+                    await fetch(`${BACKEND_URL}/api/ai/item`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            label: data.label,          // e.g. "sunflower"
+                            category: mappedCategory    // "flowers" | "trees" | "rocks"
+                        })
+                    });
+                }
+            } catch (err) {
+                console.error("Failed to save discovery:", err);
+            }
+
+            // Track API usage
             try {
                 const token = localStorage.getItem('token');
 

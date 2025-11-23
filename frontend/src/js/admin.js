@@ -114,5 +114,3 @@ class Admin {
 // Instantiate Admin class
 const admin = new Admin();
 
-// Optional: attach logout to button in HTML
-// <button onclick="adminDashboard.logout()">Logout</button>

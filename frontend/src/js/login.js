@@ -43,13 +43,8 @@ class LoginPage
         try 
         {
             if(loginErrorMessage) loginErrorMessage.textContent = ERROR_LANG.LOGIN_CLEAR_ERROR;
-
-            if (!email || !password) 
-                {
-                    loginErrorMessage.textContent = ERROR_LANG.LOGIN_EMPTY_FIELDS;
-                    return;
-                }
-
+            
+            // Send POST request to backend
             const response = await fetch(`${BACKEND_URL}/api/auth/login`, 
                 {
                     method:     'POST',
@@ -58,9 +53,12 @@ class LoginPage
                 });
 
             const data = await response.json();
-
+            console.log('Response status:', response.status, 'Data:', data);
+            
+            // If login is successful
             if (response.ok) {
-                // Assume data contains 'token'
+                
+                // Extract token from response
                 const token = data.token;
                 if (!token) {
                     loginErrorMessage.textContent = 'Login failed: No token received';
@@ -93,14 +91,16 @@ class LoginPage
                     window.location.href = 'user.html';
                 }
             } else {
-                // TODO: Backend should send message on failure 
-                loginErrorMessage.textContent = (data.message);
+                // Display server error message
+                console.log('Error response:', data);
+                loginErrorMessage.textContent = data.error || ERROR_LANG.LOGIN_FAILED;
             }
 
         } catch (error) 
         {
             console.error("Login error:", error);
-            loginErrorMessage.textContent = `${ERROR_LANG.LOGIN_NETWORK_FETCH} ${error.message}`;        }       
+            loginErrorMessage.textContent = `${ERROR_LANG.LOGIN_NETWORK_FETCH} ${error.message}`;        
+        }       
     }
 }
 
