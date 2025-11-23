@@ -10,14 +10,15 @@ import { BACKEND_URL } from "../../lang/en/constants.js";
 class AIPage {
     constructor() {
         // Cache DOM elements
-        this.outputEl   = document.getElementById('ai_response_placeholder');
-        this.submitBtn  = document.getElementById('ai_send_button');
-        this.backBtn    = document.getElementById('ai_back_button');
+        // this.inputEl = document.getElementById('userInput'); // Commented out: no longer using textarea
+        this.outputEl = document.getElementById('ai_response_placeholder');
+        this.submitBtn = document.getElementById('ai_send_button');
 
         // Bind methods to maintain correct `this`
-        this.submitRequest  = this.submitRequest.bind(this);
-        this.clearAll       = this.clearAll.bind(this);
-        this.goBack         = this.goBack.bind(this);
+        this.submitRequest = this.submitRequest.bind(this);
+        this.clearAll = this.clearAll.bind(this);
+        this.goBack = this.goBack.bind(this);
+        // this.handleKeyPress = this.handleKeyPress.bind(this); // Commented out: no longer using textarea
 
         // Initialize listeners when DOM is ready
         window.addEventListener('DOMContentLoaded', () => this.init());
@@ -27,11 +28,6 @@ class AIPage {
     {
         try
         {
-            // Initialize back button events
-            const ai_back_button = document.getElementById('ai_back_button');
-            if (ai_back_button) ai_back_button.addEventListener('click', this.goBack);
-            
-            // Initialize send button events
             const ai_send_button = document.getElementById('ai_send_button');
             if (ai_send_button) ai_send_button.addEventListener('click', this.submitRequest);
 
@@ -60,6 +56,12 @@ class AIPage {
 
         formData.append('file', file);
 
+        // const input = this.inputEl.value.trim();
+        // if (!input) {
+        //     alert('Please enter some text');
+        //     return;
+        // }
+
         // Show loading state
         this.submitBtn.disabled = true;
         this.submitBtn.innerHTML = '<span class="loading"></span> Processing...';
@@ -81,22 +83,42 @@ class AIPage {
 
             const response = await fetch('https://blip-backend-5svjo.ondigitalocean.app/describe', {
                 method: 'POST',
-                body: formData
+                body: formData,
             });
 
             const data = await response.json();
 
+            // try{
+            //     const token = localStorage.getItem('token');
+
+            //     const sendAI = await fetch(`${BACKEND_URL}/api/ai/item`, {
+            //         method: 'POST',
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //             // "Authorization": `Bearer ${token}`
+            //         },
+            //         body: JSON.stringify(data)
+            //     });
+
+            // } catch (err){
+            //     console.log("Sending AI data to database", err);
+            // }
+
+
 
             try {
 
-                const token = localStorage.getItem('token');
+                // const token = localStorage.getItem('token');
+
+                const user = JSON.parse(localStorage.getItem("user"));
+                const userEmail = user?.email;
 
                 const res = await fetch(`${BACKEND_URL}/api/auth/add`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
+                    },
+                    body: JSON.stringify({ email: userEmail })
                 });
 
                 const payload = await res.json();
@@ -119,6 +141,11 @@ class AIPage {
                 console.error("addApiUsage error:", err);
             }
 
+
+
+            // Simulate API delay
+            // await new Promise(resolve => setTimeout(resolve, 2000));
+
             // Placeholder response
             this.outputEl.textContent =
                 ` ${data.description}`;
@@ -135,7 +162,7 @@ class AIPage {
     }
 
     clearAll() {
-
+        // this.inputEl.value = ''; // Commented out: no textarea to clear
         const fileInput = document.getElementById('imageFile');
         fileInput.value = '';
         this.outputEl.className = 'output-box empty';
@@ -145,7 +172,19 @@ class AIPage {
     goBack() {
         window.location.href = 'user.html';
     }
+
+    // handleKeyPress(event) { // Commented out: no longer using textarea
+    //     if (event.key === 'Enter' && !event.shiftKey) {
+    //         event.preventDefault();
+    //         this.submitRequest();
+    //     }
+    // }
 }
 
 // Instantiate the class
 const aiPage = new AIPage();
+
+// Example HTML usage:
+// <button id="submitBtn" onclick="aiPage.submitRequest()">Send Request</button>
+// <button onclick="aiPage.clearAll()">Clear</button>
+// <button onclick="aiPage.goBack()">Back</button>
