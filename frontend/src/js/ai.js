@@ -35,6 +35,9 @@ class AIPage {
             const ai_send_button = document.getElementById('ai_send_button');
             if (ai_send_button) ai_send_button.addEventListener('click', this.submitRequest);
 
+            const ai_clear_button = document.getElementById('ai_clear_button');
+            if (ai_clear_button) ai_clear_button.addEventListener('click', this.clearAll);
+
         }catch(error)
         {
             console.error("Error initializing AIPage:", error);
@@ -165,6 +168,10 @@ class AIPage {
     clearAll() {
 
         const fileInput = document.getElementById('imageFile');
+        const preview = document.getElementById('preview');
+
+        preview.src = '';
+        preview.style.display = 'none';
         fileInput.value = '';
         this.outputEl.className = 'output-box empty';
         this.outputEl.textContent = 'Response will appear here...';
