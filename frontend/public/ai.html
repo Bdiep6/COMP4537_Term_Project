@@ -9,11 +9,13 @@
 </head>
 
 <body>
+  <!-- Navbar -->
   <nav class="navbar">
     <h2 id="ai_logo"></h2>
     <button class="back-btn" id="ai_back_button"></button>
   </nav>
 
+  <!-- Main Container Start -->
   <div class="container">
     <div class="service-card">
       <h1 id="ai_header"></h1>
@@ -21,15 +23,14 @@
 
       <div class="input-section">
         <label for="userInput" id="ai_input_label"></label>
-        <!-- <textarea id="userInput" placeholder="Type your message here"></textarea> -->
         <input type="file" id="imageFile" accept="image/*">
-        <!-- Preview -->
         <img id="preview">
       </div>
 
       <div class="button-group">
         <button class="submit-btn" id="ai_send_button"></button>
         <button class="clear-btn" id="ai_clear_button"></button>
+        <div class="ai_error_message" id="ai_error_message"> </div>
       </div>
 
       <div class="output-section">
@@ -38,6 +39,7 @@
       </div>
     </div>
   </div>
+  <!-- Main Container End -->
 
   <!-- JavaScript files -->
   <script src="../lang/en/ai-lang.js"></script>

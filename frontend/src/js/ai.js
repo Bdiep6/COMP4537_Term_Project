@@ -5,6 +5,7 @@
  * @description In this file, we define the AIPage class that handles interactions with the AI, including submitting user input, displaying responses, and managing UI elements.
  */
 
+import { ERROR_LANG } from "../../lang/en/errors-lang.js";
 import { BACKEND_URL } from "./constants.js";
 
 class AIPage {
@@ -41,14 +42,15 @@ class AIPage {
             }
 
             // Initialize back button events
-            const ai_back_button = document.getElementById('ai_back_button');
+            const ai_back_button    = document.getElementById('ai_back_button');
             if (ai_back_button) ai_back_button.addEventListener('click', this.goBack);
             
             // Initialize send button events
-            const ai_send_button = document.getElementById('ai_send_button');
+            const ai_send_button    = document.getElementById('ai_send_button');
             if (ai_send_button) ai_send_button.addEventListener('click', this.submitRequest);
 
-            const ai_clear_button = document.getElementById('ai_clear_button');
+            // Initialize clear button events
+            const ai_clear_button   = document.getElementById('ai_clear_button');
             if (ai_clear_button) ai_clear_button.addEventListener('click', this.clearAll);
 
         }catch(error)
@@ -59,28 +61,29 @@ class AIPage {
     }
 
     async submitRequest() {
-        const formData = new FormData();
-        const fileInput = document.getElementById('imageFile');
-        const file = fileInput.files[0];
+        const formData          = new FormData();
+        const fileInput         = document.getElementById('imageFile');
+        const file              = fileInput.files[0];
+        const aiErrorMessage    = document.getElementById('ai_error_message');
 
         if (!file) {
-            alert('Please select an image file.');
+            aiErrorMessage.textContent = ERROR_LANG.AI_INPUT_EMPTY;
             return;
         }
 
         // Show preview
-        const preview = document.getElementById('preview');
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = 'block';
+        const preview           = document.getElementById('preview');
+        preview.src             = URL.createObjectURL(file);
+        preview.style.display   = 'block';
 
 
         formData.append('file', file);
 
         // Show loading state
-        this.submitBtn.disabled = true;
-        this.submitBtn.innerHTML = '<span class="loading"></span> Processing...';
-        this.outputEl.className = 'output-box';
-        this.outputEl.textContent = 'Processing your request...';
+        this.submitBtn.disabled     = true;
+        this.submitBtn.innerHTML    = `<span class="loading"></span> ${AI_LANG.AI_PROCESSING_REQUEST}`;
+        this.outputEl.className     = 'output-box';
+        this.outputEl.textContent   = AI_LANG.AI_PROCESSING_REQUEST;
 
         try {
             // 🔸 Replace this block with your actual API call later
@@ -94,6 +97,8 @@ class AIPage {
             //     body: JSON.stringify({ text: input })
             // });
             // const data = await response.json();
+
+            if(aiErrorMessage) aiErrorMessage.textContent = ERROR_LANG.AI_INPUT_CLEAR_ERROR;
 
             const response = await fetch('https://blip-backend-5svjo.ondigitalocean.app/describe', {
                 method: 'POST',
@@ -169,25 +174,25 @@ class AIPage {
 
 
         } catch (error) {
-            this.outputEl.className = 'output-box';
-            this.outputEl.textContent = 'Error: ' + error.message;
+            this.outputEl.className     = 'output-box';
+            this.outputEl.textContent   = 'Error: ' + error.message;
         } finally {
             // Reset button
-            this.submitBtn.disabled = false;
-            this.submitBtn.textContent = 'Send Request';
+            this.submitBtn.disabled     = false;
+            this.submitBtn.textContent  = AI_LANG.AI_SEND_BUTTON;
         }
     }
 
     clearAll() {
 
         const fileInput = document.getElementById('imageFile');
-        const preview = document.getElementById('preview');
+        const preview   = document.getElementById('preview');
 
-        preview.src = '';
-        preview.style.display = 'none';
-        fileInput.value = '';
-        this.outputEl.className = 'output-box empty';
-        this.outputEl.textContent = 'Response will appear here...';
+        preview.src                 = AI_LANG.AI_PREVIEW_CLEAR;
+        preview.style.display       = 'none';
+        fileInput.value             = ERROR_LANG.AI_INPUT_CLEAR_ERROR;
+        this.outputEl.className     = 'output-box empty';
+        this.outputEl.textContent   = AI_LANG.AI_RESPONSE_PLACEHOLDER;
     }
 
     goBack() {

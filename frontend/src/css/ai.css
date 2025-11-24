@@ -175,6 +175,12 @@ textarea:focus {
     font-style: italic;
 }
 
+.ai_error_message {
+    color: red;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
 /* Loading spinner */
 .loading {
     display: inline-block;

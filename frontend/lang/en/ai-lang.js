@@ -15,5 +15,8 @@ const AI_LANG = {
     AI_SEND_BUTTON          : "Send Request",
     AI_CLEAR_BUTTON         : "Clear",
     AI_RESPONSE_HEADER      : "AI Response",
-    AI_RESPONSE_PLACEHOLDER : "Response will appear here"
+    AI_RESPONSE_PLACEHOLDER : "Response will appear here",
+    AI_PROCESSING_REQUEST   : "Processing your request...",
+    AI_RESPONSE_CLEAR       : "",
+    AI_PREVIEW_CLEAR        : ""
 }

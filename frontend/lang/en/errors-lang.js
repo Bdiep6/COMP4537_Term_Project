@@ -16,5 +16,8 @@ export const ERROR_LANG = {
     REGISTER_PASSWORD_DONT_MATCH    : "Passwords do not match. Please try again.",
     REGISTER_FILL_ALL_FIELDS        : "Please fill in all fields.",
     REGISTER_UNKNOWN_ERROR          : "An unknown error occurred during registration.",
-    REGISTER_NETWORK_FETCH          : "Network or fetch error"
+    REGISTER_NETWORK_FETCH          : "Network or fetch error",
+    AI_INPUT_EMPTY                  : "Input cannot be empty. Please enter a prompt.",
+    AI_INPUT_CLEAR_ERROR            : "",
 }
+
