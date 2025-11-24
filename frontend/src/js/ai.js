@@ -27,6 +27,19 @@ class AIPage {
     {
         try
         {
+            // Role check: Must be "user" or "admin" to access AI page
+            const userJson = localStorage.getItem('user');
+            if (!userJson) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(userJson);
+            if (user.role !== 'user' && user.role !== 'admin') {
+                window.location.href = 'login.html';
+                return;
+            }
+
             // Initialize back button events
             const ai_back_button = document.getElementById('ai_back_button');
             if (ai_back_button) ai_back_button.addEventListener('click', this.goBack);

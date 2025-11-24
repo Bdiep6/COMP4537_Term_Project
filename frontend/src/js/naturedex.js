@@ -48,6 +48,21 @@ class NatureDex
     async init() 
     {
         try {
+            // Check user role - must be "user" or "admin"
+            const userJson = localStorage.getItem('user');
+            if (!userJson) 
+                {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+            const user = JSON.parse(userJson);
+            if (user.role !== 'user' && user.role !== 'admin') 
+                {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
             // Initialize back button events
             const backBtn = document.getElementById('naturedex_back_button');
             if (backBtn) backBtn.addEventListener('click', this.goBack);

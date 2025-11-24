@@ -21,7 +21,20 @@ class Admin {
 
     async init() {
 
-        try{
+        try {
+            // Check user role - must be "admin"
+            const userJson = localStorage.getItem('user');
+            if (!userJson) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(userJson);
+            if (user.role !== 'admin') {
+                window.location.href = 'user.html';
+                return;
+            }
+
             const logoutBtn = document.getElementById('admin-logout');
             if (logoutBtn) logoutBtn.addEventListener('click', this.logout);
         } catch (error) {
@@ -70,6 +83,20 @@ class Admin {
         });
 
         const data = await response.json();
+
+        // Check for server-side authorization errors
+        if (response.status === 403) 
+            {
+                window.location.href = 'user.html';
+                return;
+            }
+
+        if (!response.ok) 
+            {
+                console.error('Error loading admin data:', data);
+                this.userTableBody.innerHTML = JSON.stringify(data, null, 2);
+                return;
+            }
 
         this.userTableBody.innerHTML = JSON.stringify(data, null, 2);
 
