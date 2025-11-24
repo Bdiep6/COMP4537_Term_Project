@@ -10,7 +10,7 @@ const AI_LANG = {
     AI_LOGO                 : "NatureDex",
     AI_BACK_BUTTON          : "Back to Dashboard",
     AI_HEADER               : "AI",
-    AI_DESCRIPTION          : "Enter your text below and get AI-generated responses",
+    AI_DESCRIPTION          : "Upload an image of a flower, tree, or rock to learn and earn!",
     AI_INPUT_LABEL          : "Your Input",
     AI_SEND_BUTTON          : "Send Request",
     AI_CLEAR_BUTTON         : "Clear",
