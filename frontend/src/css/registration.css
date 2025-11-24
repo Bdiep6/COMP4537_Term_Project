@@ -101,7 +101,7 @@ button:hover {
     text-decoration: underline;
 }
 
-.login_error_message {
+.registration_error_message {
     color: red;
     font-size: 12px;
     margin-top: 4px;

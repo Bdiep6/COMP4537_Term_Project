@@ -53,7 +53,6 @@ class LoginPage
                 });
 
             const data = await response.json();
-            console.log('Response status:', response.status, 'Data:', data);
             
             // If login is successful
             if (response.ok) {

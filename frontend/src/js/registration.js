@@ -34,29 +34,20 @@ class RegisterPage
     {
         event.preventDefault();
 
-        const username          = document.getElementById('username').value.trim();
-        const email             = document.getElementById('email').value.trim();
-        const password          = document.getElementById('password').value.trim();
-        const confirmPassword   = document.getElementById('confirmPassword').value.trim();
-        const loginErrorMessage = document.getElementById('login_error_message');
+        const username                  = document.getElementById('username').value.trim();
+        const email                     = document.getElementById('email').value.trim();
+        const password                  = document.getElementById('password').value.trim();
+        const confirmPassword           = document.getElementById('confirmPassword').value.trim();
+        const registrationErrorMessage  = document.getElementById('registration_error_message');
         
-
-        if (!username || !email || !password || !confirmPassword) 
-            {
-                loginErrorMessage.textContent = ERROR_LANG.LOGIN_EMPTY_FIELDS;
-                return;
-            }
-
-        if (password !== confirmPassword) 
-            {
-                loginErrorMessage.textContent = ERROR_LANG.REGISTER_PASSWORD_DONT_MATCH;
-                return;
-            }
+        if (password !== confirmPassword) {
+            registrationErrorMessage.textContent = ERROR_LANG.REGISTER_PASSWORD_DONT_MATCH;
+            return;
+        }
 
         try 
         {
-
-            if(loginErrorMessage) loginErrorMessage.textContent = ERROR_LANG.LOGIN_CLEAR_ERROR;
+             if(registrationErrorMessage) registrationErrorMessage.textContent = ERROR_LANG.REGISTER_CLEAR_ERROR;
 
             const response = await fetch(`${BACKEND_URL}/api/auth/signup`, 
                 {
@@ -70,13 +61,13 @@ class RegisterPage
             if (response.ok) {
                 window.location.href = 'login.html';
             } else {
-                loginErrorMessage.textContent = (ERROR_LANG.LOGIN_UKNOWN_ERROR);
+                registrationErrorMessage.textContent = data.error || ERROR_LANG.REGISTER_UNKNOWN_ERROR;
             }
 
         } catch (error) 
         {
-            console.error("Login error:", error);
-            loginErrorMessage.textContent = `${ERROR_LANG.LOGIN_NETWORK_FETCH} ${error.message}`;  
+            console.error("Registration error:", error);
+            registrationErrorMessage.textContent = `${ERROR_LANG.REGISTER_NETWORK_FETCH} ${error.message}`;  
         }
     }
 }

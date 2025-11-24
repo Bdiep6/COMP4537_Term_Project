@@ -12,5 +12,9 @@ export const ERROR_LANG = {
     LOGIN_NETWORK_FETCH             : "Network or fetch error",
     LOGIN_UKNOWN_ERROR              : "An unknown error occurred during login.",
     LOGIN_CLEAR_ERROR               : "",
-    REGISTER_PASSWORD_DONT_MATCH    : "Passwords dont match",
+    REGISTER_CLEAR_ERROR            : "",
+    REGISTER_PASSWORD_DONT_MATCH    : "Passwords do not match. Please try again.",
+    REGISTER_FILL_ALL_FIELDS        : "Please fill in all fields.",
+    REGISTER_UNKNOWN_ERROR          : "An unknown error occurred during registration.",
+    REGISTER_NETWORK_FETCH          : "Network or fetch error"
 }
