@@ -17,6 +17,7 @@ const ADMIN_LANG = {
     ADMIN_USER_USERNAME       : "Username",
     ADMIN_USER_EMAIL          : "Email",
     ADMIN_USER_API_CALLS_USED : "API Calls Used",
-    ADMIN_USER_REMAINING      : "Remaining"
+    ADMIN_USER_REMAINING      : "Remaining",
+    ADMIN_CLEAR_ROWS          : ""   
 
 }

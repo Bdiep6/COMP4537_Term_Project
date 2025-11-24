@@ -106,9 +106,9 @@ class Admin {
      * Update dashboard summary stats
      */
     updateStats(stats) {
-        this.totalUsersEl.textContent = stats.totalUsers.toString();
-        this.totalCallsEl.textContent = stats.totalCalls.toLocaleString();
-        this.activeTodayEl.textContent = stats.activeToday.toString();
+        this.totalUsersEl.textContent   = stats.totalUsers.toString();
+        this.totalCallsEl.textContent   = stats.totalCalls.toLocaleString();
+        this.activeTodayEl.textContent  = stats.activeToday.toString();
     }
 
     /**
@@ -117,10 +117,10 @@ class Admin {
     renderUsers(users) {
         
         // Clear existing rows
-        this.userTableBody.innerHTML = '';
+        this.userTableBody.innerHTML = ADMIN_LANG.ADMIN_CLEAR_ROWS;
 
-        const row = this.userTableBody.insertRow();
-        row.innerHTML = users;
+        const row       = this.userTableBody.insertRow();
+        row.innerHTML   = users;
 
     }
 
@@ -133,7 +133,6 @@ class Admin {
         localStorage.removeItem('user');
         sessionStorage.clear();
 
-        alert('Logging out...');
         window.location.href = 'login.html';
     }
 }
