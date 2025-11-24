@@ -10,7 +10,7 @@ import { BACKEND_URL } from "./constants.js";
 
 class Admin {
     constructor() {
-        this.userTableBody = document.getElementById('usersTableBody');
+        this.userTableBody = document.getElementById('usersTable');
         this.totalUsersEl  = document.getElementById('totalUsers');
         this.totalCallsEl  = document.getElementById('totalCalls');
         this.activeTodayEl = document.getElementById('activeToday');
@@ -76,7 +76,44 @@ class Admin {
                 return;
             }
 
-        this.userTableBody.innerHTML = JSON.stringify(data, null, 2);
+        console.log('Admin data received:', data);
+
+        // Handle case where data might be wrapped in an object (e.g., { result: [...] })
+        const users = data.result.rows;
+
+        if (!Array.isArray(users)) {
+            console.error('Users data is not an array:', users);
+            this.userTableBody.innerHTML = JSON.stringify(data, null, 2);
+            return;
+        }
+
+        let totalRequests = 0;
+        let totalUsers = users.length;
+
+        // Render user rows
+        for (const user of users) {
+
+            const row = document.createElement("tr");
+
+            row.style.borderBottom = "1px solid #ccc";
+            row.style.padding = "12px 16px";
+
+            row.innerHTML = `
+                <td style="padding: 12px 16px;">${user.username}</td>
+                <td style="padding: 12px 16px;">${user.email}</td>
+                <td style="padding: 12px 16px; text-align:center;">${user.api_usage_count}</td>
+                <td style="padding: 12px 16px; text-align:center;">${20 - user.api_usage_count}</td>
+            `;
+
+            this.userTableBody.appendChild(row);
+
+
+
+            totalRequests += user.api_usage_count;
+        }
+
+        this.totalCallsEl.textContent = totalRequests;
+        this.totalUsersEl.textContent = totalUsers;
 
     }
 
