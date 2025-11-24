@@ -7,7 +7,7 @@
 
 const USER_LANG = {
     USER_TITLE                     : "User Dashboard",
-    USER_LOGO                      : "User",
+    USER_LOGO                      : "NatureDex",
     USER_LOGOUT                    : "Logout",
     USER_WELCOME_MESSAGE           : "Welcome, {username}!",
     USER_WELCOME_SUBTITLE          : "Manage your AI service usage and access our tools",

@@ -45,6 +45,7 @@ class UIMessage {
     this.ai_response_placeholder = document.getElementById("ai_response_placeholder");
 
     // Login page
+    this.login_navbar          = document.getElementById("login_navbar");
     this.login_title           = document.getElementById("login_title");
     this.login_header          = document.getElementById("login_header");
     this.login_subtitle        = document.getElementById("login_subtitle");
@@ -144,6 +145,7 @@ class UIMessage {
 
     // Login page
     if (typeof LOGIN_LANG !== "undefined") {
+        this.login_navbar.textContent          = LOGIN_LANG.LOGIN_NAVBAR;
         this.login_title.textContent           = LOGIN_LANG.LOGIN_TITLE;
         this.login_header.textContent          = LOGIN_LANG.LOGIN_HEADER;
         this.login_subtitle.textContent        = LOGIN_LANG.LOGIN_SUBTITLE;

@@ -27,7 +27,14 @@ body {
     align-items: center;
 }
 
-.navbar h2 {
+.navbar a {
+    color: #66bb6a;
+}
+
+.ai_logo_css {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
     color: #66bb6a;
 }
 

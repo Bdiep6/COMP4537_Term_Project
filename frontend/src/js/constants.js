@@ -5,4 +5,7 @@
  * @description Language strings for the admin panel.
  */
 
-export const BACKEND_URL = "https://termproject.yujinjeong-comp4537-labs-0.com"; // Change to your backend URL
+
+// Change to your backend URL
+export const BACKEND_URL = "https://termproject.yujinjeong-comp4537-labs-0.com"; 
+export const TOTAL_REQUESTS_AVAILABLE = 20;

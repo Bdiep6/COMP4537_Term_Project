@@ -107,45 +107,32 @@ class AIPage {
 
             const data = await response.json();
 
-            // Save discovery to NatureDex
-            try {
-                const token = localStorage.getItem("token");
-
-                const categoryMap = {
-                    flower: "flowers",
-                    tree:   "trees",
-                    rock:   "rocks"
-                };
-
-                const mappedCategory = categoryMap[data.category];
-
-                if (token && mappedCategory) {
-                    await fetch(`${BACKEND_URL}/api/ai/item`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${token}`
-                        },
-                        body: JSON.stringify({
-                            label: data.label,          // e.g. "sunflower"
-                            category: mappedCategory    // "flowers" | "trees" | "rocks"
-                        })
-                    });
-                }
-            } catch (err) {
-                console.error("Failed to save discovery:", err);
-            }
 
             // Track API usage
             try {
-                const token = localStorage.getItem('token');
+                const userJson = localStorage.getItem("user");
+                const token    = localStorage.getItem("token");
+
+                if (!userJson || !token) {
+                    console.warn("Skipping addApiUsage: no user or token in localStorage");
+                    return;
+                }
+
+                const user      = JSON.parse(userJson);
+                const userEmail = user?.email;
+
+                if (!userEmail) {
+                    console.warn("Skipping addApiUsage: user has no email");
+                    return;
+                }
 
                 const res = await fetch(`${BACKEND_URL}/api/auth/add`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ email: userEmail }),
                 });
 
                 const payload = await res.json();
@@ -161,13 +148,37 @@ class AIPage {
                 } else {
                     console.log("addApiUsage success:", payload);
                 }
-
-
             } catch (err) {
-                // handle network or parsing errors
                 console.error("addApiUsage error:", err);
             }
+            
+            // Save discovery to NatureDex
+            try {
+                const user = JSON.parse(localStorage.getItem("user"));
+                const userID = user?.sub;
+                const categoryMap = {
+                    flower: "flowers",
+                    tree:   "trees",
+                    rock:   "rocks",
+                };
+                const mappedCategory = categoryMap[data.category];
+                await fetch(`${BACKEND_URL}/api/ai/item`, {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        userId: userID,
+                        category: data.category,
+                        label: data.label
+                    })
+                });
+            } catch (err) {
+                console.error("Failed to save discovery:", err);
+            }
 
+
+            
             // Placeholder response
             this.outputEl.textContent =
                 ` ${data.description}`;

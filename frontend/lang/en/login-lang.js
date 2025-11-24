@@ -6,6 +6,7 @@
  */
 
 const LOGIN_LANG = {
+    LOGIN_NAVBAR          : "NatureDex",
     LOGIN_TITLE           : "Login",
     LOGIN_HEADER          : "Welcome Back!",
     LOGIN_SUBTITLE        : "Login to access AI",

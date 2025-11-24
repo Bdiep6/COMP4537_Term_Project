@@ -5,6 +5,8 @@
  * @description This file contains the UserDashboardPage class that manages the user dashboard functionality.
  */
 
+import { BACKEND_URL, TOTAL_REQUESTS_AVAILABLE } from "./constants.js";
+
 class UserDashboardPage 
 {
     constructor() 
@@ -16,7 +18,6 @@ class UserDashboardPage
 
         // Bind methods
         this.init               = this.init.bind(this);
-        // this.loadUserData       = this.loadUserData.bind(this); // commented out
         this.goToAIService      = this.goToAIService.bind(this);
         this.logout             = this.logout.bind(this);
 
@@ -27,7 +28,7 @@ class UserDashboardPage
     async init() 
     {
         try {
-            // await this.loadUserData(); // commented out
+            await this.loadUserData(); 
 
             const aiBtn = document.getElementById('user_ai_button');
             if (aiBtn) aiBtn.addEventListener('click', this.goToAIService);
@@ -43,35 +44,43 @@ class UserDashboardPage
         }
     }
 
-    // async loadUserData() 
-    // {
-    //     const token     = localStorage.getItem('token');
-    //     const response  = await fetch('/api/auth/current-user', {
-    //         method: 'GET',
-    //         headers: {
-    //             'Authorization': `Bearer ${token}`,
-    //             'Content-Type': 'application/json',
-    //         },
-    //     });
+    async loadUserData() 
+    {
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user?.sub;
+        try {
+            // POST to the backend because the endpoint expects a JSON body
+            const res = await fetch(`${BACKEND_URL}/api/auth/get?id=${userId}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
-    //     let data = null;
-    //     try {
-    //         data = await response.json();
-    //     } catch (err) {
-    //         console.warn('Response not JSON or empty:', err);
-    //     }
+            const payload = await res.json();
 
-    //     if (response.ok && data) {     
-    //         if (this.usernameEl) this.usernameEl.textContent            = data.username;
-    //         if (this.apiCallsEl) this.apiCallsEl.textContent            = data.apiCalls?.toLocaleString() ?? '0';
-    //         if (this.totalRequestsEl) this.totalRequestsEl.textContent  = data.totalRequests?.toString() ?? '0';
-    //     } 
-    //     else {
-    //         console.warn('Failed to load user data:', data?.message || response.statusText);
-    //         alert('No user data available: ' + (data?.message || 'Unknown error'));
-    //         // window.location.href = 'login.html';
-    //     }
-    // }
+            if (!res.ok) {
+                if (res.status === 401) {
+                    console.warn("getApiUsage: Unauthorized", payload);
+                } else if (res.status === 404) {
+                    console.warn("getApiUsage: User not found", payload);
+                } else {
+                    console.warn("getApiUsage failed:", res.status, payload);
+                }
+            } else {
+                if (this.totalRequestsEl){
+                    this.totalRequestsEl.textContent = payload.amount;
+                    this.apiCallsEl.textContent = TOTAL_REQUESTS_AVAILABLE - payload.amount;
+                } else {
+                    
+                }
+
+            }
+
+        } catch (error){
+            console.error("addApiUsage error:", error);
+        }
+    }
 
 
     goToAIService() 

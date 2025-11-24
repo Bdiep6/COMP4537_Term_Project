@@ -7,7 +7,7 @@
 
 const AI_LANG = {
     AI_TITLE                : "AI",
-    AI_LOGO                 : "AI",
+    AI_LOGO                 : "NatureDex",
     AI_BACK_BUTTON          : "Back to Dashboard",
     AI_HEADER               : "AI",
     AI_DESCRIPTION          : "Enter your text below and get AI-generated responses",
