@@ -1,6 +1,6 @@
 /**
  * @file login.js
- * @author Yujin Jeong, Evan Vink, Brian Diep
+ * @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT
  * @version 1.0
  * @description In this file, we define the LoginPage class that manages user login functionality.
  */

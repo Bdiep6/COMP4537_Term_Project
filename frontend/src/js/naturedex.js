@@ -1,6 +1,6 @@
 /**
  * @file naturedex.js
- * @author Yujin Jeong, Evan Vink, Brian Diep
+ * @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT, Chat GPT
  * @version 1.0
  * @description A collection logic where users can collect items (flowers, trees, rocks) and unlock achievements.
  */

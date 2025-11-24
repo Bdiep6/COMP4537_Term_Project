@@ -1,6 +1,6 @@
 /*
   @file user.css
-  @author Yujin Jeong, Evan Vink, Brian Diep
+  @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT
   @version 1.0
   @description Stylesheet for the user page
 */
@@ -123,6 +123,7 @@ body {
     cursor: pointer;
     font-weight: 600;
     transition: transform 0.2s;
+    margin-bottom: 10px;
 }
 
 .action-btn:hover {

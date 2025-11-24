@@ -1,6 +1,6 @@
 /**
  * @file user-lang.js
- * @author Yujin Jeong, Evan Vink, Brian Diep
+ * @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT
  * @version 1.0
  * @description Language strings for the user page.
  */
@@ -16,9 +16,6 @@ const USER_LANG = {
     USER_AI_SERVICE_ACCESS         : "Go to AI",
     USER_AI_SERVICE_DESCRIPTION    : "Interact with our AI service. Make requests and see responses.",
     USER_AI_BUTTON                 : "Access AI",
-    USER_COLLECTION                : "My Collection",
-    USER_COLLECTION_DESCRIPTION    : "View and manage your saved AI responses.",
-    USER_COLLECTION_BUTTON         : "Go to My Collection",
     USER_NATUREDEX                 : "My NatureDex",
     USER_NATUREDEX_DESCRIPTION     : "Track your nature item collection and achievements.",
     USER_NATUREDEX_BUTTON          : "Go to My NatureDex"

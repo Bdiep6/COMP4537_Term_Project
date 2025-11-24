@@ -86,17 +86,6 @@ class AIPage {
         this.outputEl.textContent   = AI_LANG.AI_PROCESSING_REQUEST;
 
         try {
-            // 🔸 Replace this block with your actual API call later
-            // const token = localStorage.getItem('token');
-            // const response = await fetch('/api/ai/process', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         'Authorization': 'Bearer ' + token
-            //     },
-            //     body: JSON.stringify({ text: input })
-            // });
-            // const data = await response.json();
 
             if(aiErrorMessage) aiErrorMessage.textContent = ERROR_LANG.AI_INPUT_CLEAR_ERROR;
 

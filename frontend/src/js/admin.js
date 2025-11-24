@@ -53,28 +53,6 @@ class Admin {
      * /api/auth/admin-dashboard
      */
     async loadAdminData() {
-        // 🔸 Example for future: replace this with actual API call
-        // const token = localStorage.getItem('token');
-        // const response = await fetch('/api/admin/stats', {
-        //     headers: { 'Authorization': 'Bearer ' + token }
-        // });
-        // const data = await response.json();
-
-        // Temporary placeholder data
-        // const stats = {
-        //     totalUsers: 5,
-        //     totalCalls: 1234,
-        //     activeToday: 3
-        // };
-
-        // const users = [
-        //     { username: 'john_doe', email: 'john@example.com', used: 234, remaining: 766, lastActive: '2 hours ago' },
-        //     { username: 'jane_smith', email: 'jane@example.com', used: 456, remaining: 544, lastActive: '5 hours ago' },
-        //     { username: 'bob_wilson', email: 'bob@example.com', used: 123, remaining: 877, lastActive: '1 day ago' }
-        // ];
-
-        // this.updateStats(stats);
-
 
         const token = localStorage.getItem('token');
 

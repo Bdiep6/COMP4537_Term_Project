@@ -1,6 +1,6 @@
 /**
  * @file ui-message.js
- * @author Yujin Jeong, Evan Vink, Brian Diep
+ * @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT
  * @version 1.0
  * @description This file contains the UIMessage class that manages messages for the user interface (used in HTML files).
  */
@@ -78,9 +78,6 @@ class UIMessage {
     this.user_ai_service_access         = document.getElementById("user_ai_service_access");
     this.user_ai_service_description    = document.getElementById("user_ai_service_description");
     this.user_ai_button                 = document.getElementById("user_ai_button");
-    this.user_collection                = document.getElementById("user_collection");
-    this.user_collection_description    = document.getElementById("user_collection_description");
-    this.user_collection_button         = document.getElementById("user_collection_button");
     this.user_naturedex                 = document.getElementById("user_naturedex");
     this.user_naturedex_description     = document.getElementById("user_naturedex_description");
     this.user_naturedex_button          = document.getElementById("user_naturedex_button");
@@ -181,9 +178,6 @@ class UIMessage {
         this.user_ai_service_access.textContent         = USER_LANG.USER_AI_SERVICE_ACCESS;
         this.user_ai_service_description.textContent    = USER_LANG.USER_AI_SERVICE_DESCRIPTION;
         this.user_ai_button.textContent                 = USER_LANG.USER_AI_BUTTON;
-        this.user_collection.textContent                = USER_LANG.USER_COLLECTION;
-        this.user_collection_description.textContent    = USER_LANG.USER_COLLECTION_DESCRIPTION;
-        this.user_collection_button.textContent         = USER_LANG.USER_COLLECTION_BUTTON;
         this.user_naturedex.textContent                 = USER_LANG.USER_NATUREDEX;
         this.user_naturedex_description.textContent     = USER_LANG.USER_NATUREDEX_DESCRIPTION;
         this.user_naturedex_button.textContent          = USER_LANG.USER_NATUREDEX_BUTTON;

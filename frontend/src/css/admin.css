@@ -1,6 +1,6 @@
 /*
   @file admin.css
-  @author Yujin Jeong, Evan Vink, Brian Diep
+  @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT
   @version 1.0
   @description Stylesheet for the admin page
 */
@@ -129,12 +129,12 @@ tr:hover {
     background: #f1f8f4;
 }
 
-#nav-links{
+#nav-links {
     display: flex;
     gap: 25px;
 }
 
-#nav-links a{
+#nav-links a {
     color: #66bb6a;
     font-weight: 600;
     text-decoration: none;

@@ -1,6 +1,6 @@
 /**
  * @file ai-lang.js
- * @author Yujin Jeong, Evan Vink, Brian Diep
+ * @author Yujin Jeong, Evan Vink, Brian Diep, Chat GPT
  * @version 1.0
  * @description Language strings for the AI page.
  */
